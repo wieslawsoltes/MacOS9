@@ -1,0 +1,16 @@
+{
+  "name": "@platinum/core",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Mac OS 9 browser recreation \u2014 core",
+  "license": "MIT",
+  "exports": {
+    ".": "./index.js",
+    "./filesystem": "./filesystem.js",
+    "./seed": "./seed.js"
+  },
+  "files": [
+    "*.js"
+  ],
+  "sideEffects": false
+}

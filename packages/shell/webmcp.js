@@ -1,0 +1,10 @@
+export function registerAgentTools(os, signal) { const context = document.modelContext; if (!context?.registerTool)
+    return; const add = (name, description, properties, required, readOnly, execute) => { try {
+    Promise.resolve(context.registerTool({ name, description, inputSchema: { type: 'object', properties, required, additionalProperties: false }, annotations: { readOnlyHint: readOnly, untrustedContentHint: readOnly }, execute }, { signal })).catch(error => console.warn('Agent tool registration:', error));
+}
+catch (error) {
+    console.warn('Agent tool registration:', error);
+} }; add('list_macintosh_files', 'List files in a folder of this Macintosh disk.', { folder: { type: 'string' } }, [], true, ({ folder = 'disk' }) => { os.vfs.assertFolder(folder); return os.vfs.children(folder).map(({ id, name, type, kind }) => ({ id, name, type, kind })); }); add('open_macintosh_item', 'Open a file, folder, or application on this Macintosh.', { id: { type: 'string' } }, ['id'], false, async ({ id }) => { if (typeof id !== 'string' || !os.vfs.get(id))
+    throw new Error('Unknown item'); await os.openNode(id); return { opened: id }; }); add('create_macintosh_text_file', 'Create and save a text document on the Macintosh disk.', { folder: { type: 'string' }, name: { type: 'string' }, text: { type: 'string' } }, ['folder', 'name', 'text'], false, ({ folder, name, text }) => { if (typeof text !== 'string' || text.length > 1000000)
+    throw new Error('Text must be under one million characters'); const node = os.vfs.create(folder, name, { type: 'file', kind: 'text', icon: 'text', content: text, size: new TextEncoder().encode(text).length }); os.finder.open(folder); return { id: node.id, name: node.name }; }); add('search_macintosh_files', 'Find matching file names or document contents.', { query: { type: 'string' }, contents: { type: 'boolean' } }, ['query'], true, ({ query, contents = false }) => { if (typeof query !== 'string' || query.length > 500)
+    throw new Error('Invalid query'); return os.vfs.search(query, { contents }).slice(0, 100).map(n => ({ id: n.id, name: n.name, path: os.vfs.path(n.id) })); }); }

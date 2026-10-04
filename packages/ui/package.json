@@ -1,0 +1,23 @@
+{
+  "name": "@platinum/ui",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Mac OS 9 browser recreation \u2014 ui",
+  "license": "MIT",
+  "exports": {
+    ".": "./index.js",
+    "./menus": "./menus.js",
+    "./windows": "./windows.js",
+    "./styles.css": "./styles.css"
+  },
+  "files": [
+    "*.js",
+    "*.css"
+  ],
+  "sideEffects": [
+    "*.css"
+  ],
+  "dependencies": {
+    "@platinum/core": "workspace:*"
+  }
+}

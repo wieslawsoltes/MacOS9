@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Mac OS 9 — Platinum</title><link rel="icon" href="/favicon.svg"><link rel="stylesheet" href="/app/globals.css">
+<script type="importmap">{
+  "imports": {
+    "@platinum/apps-internet": "/packages/apps-internet/index.js",
+    "@platinum/apps-media": "/packages/apps-media/index.js",
+    "@platinum/apps-text": "/packages/apps-text/index.js",
+    "@platinum/apps-utilities": "/packages/apps-utilities/index.js",
+    "@platinum/apps-utilities/math": "/packages/apps-utilities/math.js",
+    "@platinum/apps-utilities/help": "/packages/apps-utilities/help.js",
+    "@platinum/apps-utilities/scripting": "/packages/apps-utilities/scripting.js",
+    "@platinum/control-panels": "/packages/control-panels/index.js",
+    "@platinum/core": "/packages/core/index.js",
+    "@platinum/core/filesystem": "/packages/core/filesystem.js",
+    "@platinum/core/seed": "/packages/core/seed.js",
+    "@platinum/finder": "/packages/finder/index.js",
+    "@platinum/renderer": "/packages/renderer/index.js",
+    "@platinum/shell": "/packages/shell/index.js",
+    "@platinum/shell/webmcp": "/packages/shell/webmcp.js",
+    "@platinum/shell/dialogs": "/packages/shell/dialogs.js",
+    "@platinum/storage": "/packages/storage/index.js",
+    "@platinum/ui": "/packages/ui/index.js",
+    "@platinum/ui/menus": "/packages/ui/menus.js",
+    "@platinum/ui/windows": "/packages/ui/windows.js"
+  }
+}</script></head>
+<body><main id="macintosh" aria-label="Mac OS 9 desktop"><p>Starting up…</p></main>
+<script type="module">
+import { boot } from '@platinum/shell';
+const root=document.querySelector('#macintosh');
+try { await boot(root); } catch(error) { root.textContent='The Macintosh could not start. '+error.message; console.error(error); }
+</script></body></html>

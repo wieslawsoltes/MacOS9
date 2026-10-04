@@ -1,0 +1,17 @@
+{
+  "name": "@platinum/renderer",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Mac OS 9 browser recreation \u2014 renderer",
+  "license": "MIT",
+  "exports": {
+    ".": "./index.js"
+  },
+  "files": [
+    "*.js"
+  ],
+  "sideEffects": false,
+  "dependencies": {
+    "@platinum/core": "workspace:*"
+  }
+}

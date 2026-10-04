@@ -1,0 +1,28 @@
+{
+  "name": "@platinum/shell",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Mac OS 9 browser recreation \u2014 shell",
+  "license": "MIT",
+  "exports": {
+    ".": "./index.js",
+    "./webmcp": "./webmcp.js",
+    "./dialogs": "./dialogs.js"
+  },
+  "files": [
+    "*.js"
+  ],
+  "sideEffects": false,
+  "dependencies": {
+    "@platinum/apps-internet": "workspace:*",
+    "@platinum/apps-media": "workspace:*",
+    "@platinum/apps-text": "workspace:*",
+    "@platinum/apps-utilities": "workspace:*",
+    "@platinum/control-panels": "workspace:*",
+    "@platinum/core": "workspace:*",
+    "@platinum/finder": "workspace:*",
+    "@platinum/renderer": "workspace:*",
+    "@platinum/storage": "workspace:*",
+    "@platinum/ui": "workspace:*"
+  }
+}

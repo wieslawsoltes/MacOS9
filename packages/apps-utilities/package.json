@@ -1,0 +1,22 @@
+{
+  "name": "@platinum/apps-utilities",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Mac OS 9 browser recreation \u2014 apps utilities",
+  "license": "MIT",
+  "exports": {
+    ".": "./index.js",
+    "./math": "./math.js",
+    "./help": "./help.js",
+    "./scripting": "./scripting.js"
+  },
+  "files": [
+    "*.js"
+  ],
+  "sideEffects": false,
+  "dependencies": {
+    "@platinum/core": "workspace:*",
+    "@platinum/renderer": "workspace:*",
+    "@platinum/ui": "workspace:*"
+  }
+}

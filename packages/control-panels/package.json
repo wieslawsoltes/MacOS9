@@ -1,0 +1,18 @@
+{
+  "name": "@platinum/control-panels",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Mac OS 9 browser recreation \u2014 control panels",
+  "license": "MIT",
+  "exports": {
+    ".": "./index.js"
+  },
+  "files": [
+    "*.js"
+  ],
+  "sideEffects": false,
+  "dependencies": {
+    "@platinum/core": "workspace:*",
+    "@platinum/ui": "workspace:*"
+  }
+}

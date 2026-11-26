@@ -10,7 +10,7 @@ export class MenuManager {
         }
         else
             this.closeFrom(level);
-        const menu = el('div', { class: 'menu-popup', role: 'menu', style: { left: `x`, top: `y` } });
+        const menu = el('div', { class: level === 0 && button ? 'menu-popup pull-down' : 'menu-popup', role: 'menu', style: { left: `x`, top: `y` } });
         const record = { menu, items, selected: -1 };
         this.menus[level] = record;
         items.forEach((item, index) => {
@@ -18,17 +18,17 @@ export class MenuManager {
                 menu.append(el('div', { class: 'menu-separator', role: 'separator' }));
                 return;
             }
-            const row = el('button', { class: `menu-item ${item.disabled ? 'disabled' : ''}`, role: 'menuitem', disabled: !!item.disabled, 'data-menu-index': index, html: `<span class="menu-check">${item.checked ? '✓' : ''}</span>${item.icon ? icon(item.icon, 16) : ''}<span class="menu-label">${h(item.label)}</span><span class="menu-shortcut">${item.shortcut ? h(item.shortcut) : item.items ? '▶' : ''}</span>` });
+            const row = el('button', { class: `menu-item ${item.disabled ? 'disabled' : ''}${item.icon ? ' with-icon' : ''}`, role: 'menuitem', disabled: !!item.disabled, 'data-menu-index': index, html: `<span class="menu-check">${item.checked ? '✓' : ''}</span>${item.icon ? icon(item.icon, 16) : ''}<span class="menu-label">${h(item.label)}</span><span class="menu-shortcut">${item.shortcut ? h(item.shortcut) : item.items ? '▶' : ''}</span>` });
             row.addEventListener('pointerenter', () => { record.selected = index; this.highlight(record); if (item.items) {
                 const rect = row.getBoundingClientRect();
-                this.open(typeof item.items === 'function' ? item.items() : item.items, rect.right - 2, rect.top - 3, null, level + 1);
+                this.open(typeof item.items === 'function' ? item.items() : item.items, rect.right - 2, rect.top - 1, null, level + 1);
             }
             else
                 this.closeFrom(level + 1); });
             row.addEventListener('click', e => { e.stopPropagation(); if (item.disabled)
                 return; if (item.items) {
                 const rect = row.getBoundingClientRect();
-                this.open(typeof item.items === 'function' ? item.items() : item.items, rect.right - 2, rect.top - 3, null, level + 1);
+                this.open(typeof item.items === 'function' ? item.items() : item.items, rect.right - 2, rect.top - 1, null, level + 1);
                 return;
             } this.close(); this.run(item.action ?? item.id); });
             menu.append(row);
